@@ -1,0 +1,98 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light ml-auto">
+  <span class="navbar-brand" href="#">
+    <img class="logo img-responsive" src="assets/images/logo-light.png" alt="Reigate College Logo">
+</span>
+</div>
+<div  *ngIf="student !== undefined">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="section-header ml-auto">Student - Interview Information</h1>
+      <p>Welcome {{ student.firstName }}, this is the data entry portal for you to enter information which the College requires for your interview.</p>
+      <div class="row">
+        <h5 class="section-header">There are 3 parts for you to complete in preparation for your interview:</h5>
+      </div>
+
+      <div class="row">
+        <h5 class="col">Step 1</h5>   
+      </div>
+      <button class="btn" type="editStudentInterview" name="editStudentInterview" (click)="editStudentInterview(student)">Add Student Interview Information</button>
+   
+      <div class="row" *ngIf="student?.careerAims !== null">
+        <div class="col-md-3 col-sm-12">Career/University Aims:</div>
+        <div class="col-md-9 col-sm-12">{{ student.careerAims }}</div>
+      </div>
+      <div class="row" *ngIf="student?.workVoluntaryExperience !== null">
+        <div class="col-md-3 col-sm-12">Work experience:</div>
+        <div class="col-md-9 col-sm-12">{{ student.workVoluntaryExperience }}</div>
+      </div>
+      <div class="row" *ngIf="student?.hobbiesInterestsOtherAchievements !== null">
+        <div class="col-md-3 col-sm-12">Hobbies, interests and other achievements:</div>
+        <div class="col-md-9 col-sm-12">{{ student.hobbiesInterestsOtherAchievements }}</div>
+      </div>
+      <div class="row" *ngIf="student?.learningSupportNeedsDetails !== null">
+        <div class="col-md-3 col-sm-12">Learning Support Needs:</div>
+        <div class="col-md-9 col-sm-12">{{ student.learningSupportNeedsDetails }}</div>
+      </div>
+      <div class="row" *ngIf="student?.favoriteSubject  !== null">
+        <div class="col-md-3 col-sm-12">Favourite subjects:</div>
+        <div class="col-md-9 col-sm-12">{{ student.favoriteSubject }}</div>
+      </div>
+      <div class="row" *ngIf="student?.courseworkOrExams !== null">
+        <div class="col-md-3 col-sm-12">Coursework/Exams/both:</div>
+        <div class="col-md-9 col-sm-12">{{ student.courseworkOrExams }}</div>
+      </div>
+      <div class="row" *ngIf="student?.reasonsForReigateCollege !== null">
+        <div class="col-md-3 col-sm-12">Reasons for choosing Reigate College:</div>
+        <div class="col-md-9 col-sm-12">{{ student.reasonsForReigateCollege }}</div>
+      </div>
+      <div class="row" *ngIf="student?.otherSchoolCollegeAppliedFor !== null">
+        <div class="col-md-3 col-sm-12">Place at another College or School:</div>
+        <div class="col-md-9 col-sm-12">{{ student.otherSchoolCollegeAppliedFor }}</div>
+      </div>
+
+      <div class="row">
+        <h5 class="col">Step 2</h5>   
+      </div>
+        <button class="btn" type="upload" name="upload" (click)="upload()">Upload School Report(s)</button>      
+    
+
+    <div class="row">
+      <h5 class="col">Step 3</h5>   
+    </div>
+      <button class="btn" type="add" name="add" (click)="add()">Add Predicted Grades</button>
+   
+      <div class="row mt3">
+        <div class="col-sm-12">
+          <div *ngIf="student.qualifications !== undefined" class="table-responsive">
+            <table class="table">
+              <thead>
+                <th scope="col">Qualification</th>
+                <th scope="col">Grade</th>
+                <th scope="col" class="d-none d-md-block d-lg-block">Exam Board</th>
+                <th scope="col" *ngIf="useMockGrade">Mock Grade</th>
+                <th scope="col" class="d-print-none">Actions</th>
+              </thead>
+              <tr *ngFor="let qual of student.qualifications">
+                <td>{{ qual.qualification.type !== undefined ? qual.qualification.type.type : '' }} {{ qual.qualification.title }}</td>
+                <td>{{ qual.grade }}</td>
+                <td class="d-none d-md-block d-lg-block">{{ qual.examBoard != null ? qual.examBoard.name : '' }}</td>
+                <td *ngIf="useMockGrade">{{ qual.mockGrade }}</td>
+                <td class="d-print-none">
+                  <button class="btn" type="edit" name="edit" (click)="edit(qual)">Edit</button>
+                  <button class="btn btn-danger mr-md-2" type="delete" name="delete" (click)="delete(qual)">X</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row hidden">
+    <div class="col-sm-12">
+        {{ student | json }}
+    </div>
+  </div>
+</div>

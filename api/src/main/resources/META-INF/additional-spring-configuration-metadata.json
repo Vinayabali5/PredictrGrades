@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "upload-folder",
+  "type": "java.lang.String",
+  "description": "The folder to use for the files that are uploaded by the users."
+}]}

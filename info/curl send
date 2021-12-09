@@ -1,0 +1,4 @@
+# Test uploading a file
+curl 'http://localhost:8080/api/upload' -H 'Accept: application/json, text/plain, */*' --compressed -H 'Referer: http://localhost:4200/link?linkId=8AAFC212088-80098-1029666B3D' -H 'Content-Type: multipart/form-data;' -H 'Origin: http://localhost:4200' -F "studentId=212088" -F "file=@/path/to/file"
+
+

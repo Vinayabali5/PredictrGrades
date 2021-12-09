@@ -1,0 +1,75 @@
+<div class="">
+    <h2 class="section-header">Student Interview Information</h2>
+  </div>
+  <form [formGroup]="form" novalidate class="form form-horizontal">
+    <mat-dialog-content>
+
+    <div class="form-group row">
+      <label class="col-sm-4 col-form-label" for="careerAims">Career/University Aims:</label>
+      <div class="col-sm-8">
+        <textarea formControlName="careerAims" type="text" id="careerAims" name="careerAims" placeholder="Please add your Career or University Aims. if unknown, write unknown." class="form-control"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="workVoluntaryExperience">Work Experience:</label>
+        <div class="col-sm-8">
+        <textarea formControlName="workVoluntaryExperience" type="text" id="workVoluntaryExperience" name="workVoluntaryExperience" placeholder="Please detail any work experience either voluntary or paid part-time employment." class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="hobbiesInterestsOtherAchievements">Hobbies, interests and other achievements:</label>
+        <div class="col-sm-8">
+         <textarea formControlName="hobbiesInterestsOtherAchievements" type="text" id="hobbiesInterestsOtherAchievements" name="Hobbies Interests Other Achievements" placeholder="Please list any hobbies, interests or other achievements." class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="otherSchoolCollegeAppliedFor">Learning Support Needs:</label>
+        <div class="col-sm-8">
+        <textarea formControlName="learningSupportNeedsDetails" type="text" id="learningSupportNeedsDetails" name="learningSupportNeedsDetails" placeholder="Please list any learning support needs that we should be aware of." class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="favoriteSubject">Favourite subjects:</label>
+        <div class="col-sm-8">
+            <textarea formControlName="favoriteSubject" type="text" id="favoriteSubject" name="favoriteSubject" placeholder="Please list your favorite subject(s) at school." class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="courseworkOrExams">Do you prefer coursework/exams/both?:</label>
+        <div class="col-sm-8">
+        <select class="form-control" (change)="changeCourseWork($event)" formControlName="courseworkOrExams">
+          <option [value]="null">-- Select --</option>
+          <option *ngFor="let courseworkOrExams of Coursework" [ngValue]="courseworkOrExams">{{courseworkOrExams}}</option>
+       </select>
+      </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="reasonsForReigateCollege">Reasons for choosing Reigate College:</label>
+        <div class="col-sm-8">
+        <textarea formControlName="reasonsForReigateCollege" type="text" id="reasonsForReigateCollege" name="reasonsForReigateCollege" placeholder="Please give your reasons for choosing Reigate College." class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" for="otherSchoolCollegeAppliedFor">Please add details of other College or School applied for:</label>
+        <div class="col-sm-8">
+        <textarea formControlName="otherSchoolCollegeAppliedFor" type="text" id="otherSchoolCollegeAppliedFor" name="otherSchoolCollegeAppliedFor" placeholder="Please add details of other College or School applied for." class="form-control"></textarea>
+        </div>
+      </div>
+
+
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <button class="btn" (click)="add()" [disabled]="form.pristine || form.invalid">Save</button>
+        <button class="btn btn-default hidden" type="button" id="displayform" name="displayform" (click)="displayFormContent()">displayform</button>
+      </div>
+    </div>
+  </mat-dialog-content>
+  </form>

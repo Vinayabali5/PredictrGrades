@@ -1,0 +1,17 @@
+upload-folder: uploads
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://${db.server};databaseName=${db.name};encrypt=true;trustServerCertificate=true;
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ${db.username}
+    password: ${db.password}
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate:
+      ddl-auto: validate
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB

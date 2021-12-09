@@ -1,0 +1,58 @@
+
+<div class="">
+  <h2 class="section-header">Edit Predicted Grade</h2>
+</div>
+
+<form [formGroup]="form" novalidate class="navbar-brand">
+  <div *ngIf="studentQualficaion">
+    <div class="form-group row">
+      <label for="grade" class="col-sm-4 col-form-label"> Grade Awarded:
+      </label>
+      <div class="col-sm-8">
+        <input
+          required
+          formControlName="grade"
+          type="text"
+          id="grade"
+          name="grade"
+          placeholder="Grade Awarded"
+          class="form-control"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="ctls.grade.touched && ctls.grade.invalid"
+        >
+          <div
+          *ngIf="ctls.grade.errors.required"
+          >Grade is required.</div>
+          <div
+          *ngIf="ctls.grade.errors.grade"
+          >Grade is incorrectly formatted. Valid entry are: 1-9, A*-F, DS, ME, PA</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row" *ngIf="useMockGrade">
+      <label for="mockGrade" class="col-sm-4 col-form-label"> Mock Grade:
+      </label>
+      <div class="col-sm-8">
+        <input
+          formControlName="mockGrade"
+          type="text"
+          id="mockGrade"
+          name="mockGrade"
+          placeholder="Mock Grade"
+          class="form-control"
+        />
+        <div
+          class="alert alert-danger"
+          *ngIf="ctls.mockGrade.touched && ctls.mockGrade.invalid"
+        >
+          <div
+          *ngIf="ctls.mockGrade.errors.grade"
+          >Grade is incorrectly formatted. Valid entry are: 1-9, A*-F, DS, ME, PA</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn" (click)="save()">Save</button>
+  </div>
+</form>

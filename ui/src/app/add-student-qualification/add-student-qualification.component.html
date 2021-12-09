@@ -1,0 +1,119 @@
+<div class="">
+  <h2 class="section-header">Add a new predicted grade</h2>
+</div>
+<form [formGroup]="form" novalidate class="form form-horizontal">
+  <div class="form-group row">
+    <label for="qualificationTypeId" class="col-sm-4 col-form-label">Qualification Type:
+    </label>
+    <div class="col-sm-8">
+    <app-qualification-type-selection
+      [(qualificationTypeId)]="qualificationTypeId"
+    ></app-qualification-type-selection>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="qualificationId" class="col-sm-4 col-form-label">Qualification:
+    </label>
+    <div class="col-sm-8">
+      <app-qualification-selection
+        [parentForm]="form"
+        formControlName="qualificationId"
+        id="qualificationId"
+        name="qualificationId"
+        [qualificationTypeId]="qualificationTypeId"
+      ></app-qualification-selection>
+      <div
+        class="alert alert-danger"
+        *ngIf="ctls.qualificationId.touched && ctls.qualificationId.invalid"
+      >
+        <div
+        *ngIf="ctls.qualificationId.errors.required"
+        >Qualification is required.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label" for="grade">Grade Awarded:
+    </label>
+    <div class="col-sm-8">
+      <input
+        required
+        formControlName="grade"
+        type="text"
+        id="grade"
+        name="grade"
+        placeholder="Grade Awarded"
+        class="form-control"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="ctls.grade.touched && ctls.grade.invalid"
+      >
+        <div
+        *ngIf="ctls.grade.errors.required"
+        >Grade is required.</div>
+        <div
+        *ngIf="ctls.grade.errors.grade"
+        >{{ ctls.grade.errors.grade }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-4 col-form-label" for="exam-board">Exam Board:
+    </label>
+    <div class="col-sm-8">
+      <select
+        formControlName="examBoardId"
+        class="form-control exam-board"
+        id="exam-board"
+        name="exam-board"
+      >
+        <option [value]="null">-- Select Exam Board --</option>
+        <option value="70">AQA</option>
+        <option value="105">CIE</option>
+        <option value="101">NCFE</option>
+        <option value="1">OCR</option>
+        <option value="10">Pearson/EdExcel</option>
+        <option value="104">RSL</option>
+        <option value="40">WJEC</option>
+        <option value="102">YMCA</option>
+      </select>
+      <div
+        class="alert alert-danger"
+        *ngIf="ctls.examBoardId.touched && ctls.examBoardId.invalid"
+      >
+        <div
+        *ngIf="ctls.examBoardId.errors.required"
+        >Exam board is required.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="useMockGrade">
+    <label class="col-sm-4 col-form-label" for="grade">Mock Grade:
+    </label>
+    <div class="col-sm-8">
+      <input
+        formControlName="mockGrade"
+        type="text"
+        id="mockGrade"
+        name="mockGrade"
+        placeholder="Mock Grade"
+        class="form-control"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="ctls.mockGrade.touched && ctls.mockGrade.invalid"
+      >
+        <div
+        *ngIf="ctls.mockGrade.errors.grade"
+        >{{ ctls.mockGrade.errors.grade }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12">
+      <button class="btn" type="button" id="add" name="add" (click)="add()" [disabled]="form.pristine || form.invalid">Add</button>
+      <button class="btn btn-default hidden" type="button" id="displayform" name="displayform" (click)="displayFormContent()">displayform</button>
+    </div>
+  </div>
+</form>

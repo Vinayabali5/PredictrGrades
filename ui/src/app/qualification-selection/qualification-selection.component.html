@@ -1,0 +1,6 @@
+<select [(ngModel)]="qualificationId" class="form-control">
+  <option [ngValue]="null">-- Select --</option>
+  <option *ngFor="let qual of qualifications | orderBy: '_fullTitle' | filterByQualificationTypeId: qualificationTypeId" value="{{ qual.id }}">
+    {{ qual._fullTitle }}
+  </option>
+</select>

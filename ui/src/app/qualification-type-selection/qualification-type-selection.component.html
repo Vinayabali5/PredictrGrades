@@ -1,0 +1,6 @@
+<select [(ngModel)]="qualificationTypeId" class="form-control">
+  <option value="0">-- All --</option>
+  <option *ngFor="let qualType of qualificationTypes | orderBy: 'type'" [value]="qualType.id">
+    {{ qualType.type }}
+  </option>
+</select>

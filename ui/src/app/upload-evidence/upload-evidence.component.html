@@ -1,0 +1,24 @@
+<div>
+  <h2 class="section-header">Upload School Report:</h2>
+  <p>
+    To upload edvidence of your school report please use the button below to browse for the files to upload.
+  </p>
+</div>
+<div class="text-center">
+  <ul>
+    <li *ngFor="let file of files">
+      <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+      <div id="file-label">
+        {{ file.name }}
+      </div>
+      <div *ngIf="file.success" class="text-success">Upload Successful</div>
+      <div *ngIf="!file.inProgress && !file.success" class="text-danger">Upload Failed: {{ file.error }}</div>
+    </li>
+  </ul>
+  <button class="btn" (click)="onClick()" mat-raised-button>
+    <mat-icon>file_upload</mat-icon>
+    Upload
+  </button>
+  <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;" />
+  <button class="btn" mat-button mat-dialog-close>Close</button>
+</div>
